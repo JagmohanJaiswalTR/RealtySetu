@@ -1,0 +1,4 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+  # apps/ai-service is Python (uv/pip) and has no package.json, so pnpm ignores it.

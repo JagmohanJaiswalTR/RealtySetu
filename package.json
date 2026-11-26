@@ -1,0 +1,31 @@
+{
+  "name": "project-ecomm",
+  "private": true,
+  "version": "0.1.0",
+  "description": "B2B2C Real Estate Aggregator & Automated CRM Platform",
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=22.11.0",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:e2e": "turbo run test:e2e",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,json,md,yml,yaml}\"",
+    "db:generate": "pnpm --filter @ecomm/api prisma:generate",
+    "db:migrate": "pnpm --filter @ecomm/api prisma:migrate:deploy",
+    "db:seed": "pnpm --filter @ecomm/api prisma:seed",
+    "infra:up": "docker compose -f infra/docker/docker-compose.dev.yml up -d",
+    "infra:down": "docker compose -f infra/docker/docker-compose.dev.yml down"
+  },
+  "devDependencies": {
+    "prettier": "3.6.2",
+    "turbo": "2.5.8",
+    "typescript": "5.9.3"
+  }
+}
