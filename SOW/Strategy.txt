@@ -1,0 +1,63 @@
+
+Scope of Work (SOW): Hyper-Local PropTech Aggregator & Automated CRM Platform
+1. Executive Summary & Business Model
+We are building a B2B2C Real Estate Aggregator and Automated Lead Management Platform (starting with the Vasai-Virar / Palghar micro-market).
+The platform connects three user groups—Real Estate Developers, Property Consultants (Agents), and Direct Property Owners—with Property Buyers, while keeping full lead control, qualification, and site-visit coordination centralized with the Platform Owner (Super Admin).
+Core Value Proposition
+
+- Automated Duplicate Listing Prevention (AI & Media Fingerprinting): Before any Agent or Owner listing is published, the system automatically scans uploaded images/videos (via perceptual hashing/similarity check) alongside micro-location keywords, building/society name, floor/unit details, and carpet area. If an identical or matching unit is already active on the portal, the system blocks duplicate publication, flags it as "Already Listed", and routes it to the Super Admin for verification.
+- AI-Enhanced Auto-Publishing to Instagram & Deep-Link Funnel: Once a property listing is approved, the system automatically enhances the uploaded video/photos using AI (lighting/color correction, stabilization, smooth transitions, and dynamic text overlays—without altering actual property visuals), generates an SEO-optimized caption with the Unique Property ID, and publishes it as a Reel/Post on the associated Instagram channel via the Instagram Graph API. The caption includes a trackable deep-link URL (to the exact property page and a pre-filled Business WhatsApp link) that instantly captures buyer intent and triggers end-to-end follow-up and appointment scheduling.
+- Unique Property ID Architecture: Every approved property receives an auto-generated Unique Property ID tied to the partner's handle for clean tracking.
+- Centralized Lead Ownership: Buyers never see direct owner/agent contact numbers on the frontend. All buyer inquiries flow into the Super Admin's central CRM for qualification, smart matchmaking across multiple inventories, and coordinated site visits.
+- Developer Marketing Engine: Developers get a dedicated B2B SaaS backend to run Meta and Google Ads campaigns and manage project leads.
+- End-to-End WhatsApp Automation: Instant buyer engagement, automated qualification bots, appointment scheduling, reminders, and inventory freshness checks run automatically via WhatsApp Business API.
+
+2. User Roles & Functional Modules
+Module A: Super Admin Control Panel (Platform Owner)
+
+- Listing Moderation: Review and approve/reject new properties uploaded by Agents and Direct Owners before they go live on the public portal.
+- Central Lead Inbox & CRM: View all buyer leads tagged by Unique Property ID and traffic source (Organic, Meta Ad, Google Ad).
+- Smart Matchmaking Engine: When reviewing a buyer's profile (budget, micro-location, property type), display matching properties from across all Developers, Agents, and Owners to pitch multiple options during a single site visit.
+- Appointment & Deal Tracker: Schedule site visits linking the Buyer, Partner (Agent/Owner/Developer), and Admin; track visit outcomes, deal closures, and commission/SaaS payouts.
+Module B: Developer Portal (B2B SaaS + Ad Management)
+
+- Account & Project Setup: Developers register and receive a unique prefix (e.g., DEV-SUNRISE-01).
+- Digital Marketing Integration: Connect Developer Meta (Facebook/Instagram) Ad Accounts and Google Ads accounts via API/webhooks to launch localized campaigns and sync incoming ad leads directly into the CRM.
+- Live Inventory Matrix: Manage project wings, floor plans, pricing, brochures, and live unit status (Available, Booked, Sold).
+- Campaign Analytics: View ad spend, cost-per-lead (CPL), and site visits generated.
+Module C: Property Consultant (Agent) & Direct Owner Portal
+
+- Unified Onboarding: Agents and individual property owners register under the Partner section and select a unique handle (e.g., SHARMA for an agent or JAISWAL for a direct owner).
+- Auto-Generated Unique Property ID Logic:
+- Format: [ROLE_PREFIX]-[PARTNER_HANDLE]-[SEQUENCE_NUMBER]
+- Examples: AGT-SHARMA-01, AGT-SHARMA-02 (for Agents) | OWN-JAISWAL-01 (for Direct Owners).
+- Quick Listing Dashboard: Upload residential/commercial properties (Flats, Shops/Galas, Bungalows, Plots) with carpet area, pricing, micro-location, RERA details (if applicable), photos, and videos.
+- Status Toggle: One-click update between Available, On Hold, and Sold Out.
+Module D: Buyer Frontend (Public Search Portal)
+
+- Hyper-Local Search & Filters: Search by micro-location, property category (Residential/Commercial/Plot), budget range, configuration, and possession status.
+- Privacy-Protected Listing View: Displays complete property specs, media, and the Unique Property ID, while masking seller/agent contact info.
+- Lead Capture Triggers: "Schedule Site Visit", "Get Brochure & Floor Plan", and "Request Callback" forms capturing Name, WhatsApp Number, and the target Unique Property ID.
+3. Core Database Architecture
+The backend database must support four relational tables:
+
+1. Users_Partners: User ID, Role (Admin, Developer, Agent, Owner), Name, Phone, Email, Unique Handle, Ad Account Tokens (Developers), KYC/RERA details.
+2. Properties_Inventory: Unique_Property_ID (Primary Key), Partner_ID (Foreign Key), Category, Micro-Location, Area (sq. ft.), Price, Media URLs, Approval Status (Pending/Approved), Availability Status (Available/Hold/Sold).
+3. Buyers_Leads: Lead_ID, Buyer Name, WhatsApp Number, Target Unique_Property_ID, Budget, Requirement Notes, Loan Required (Yes/No), Pipeline Stage (New → Qualified → Visit Scheduled → Negotiation → Closed/Lost).
+4. Appointments_Deals: Appointment_ID, Lead_ID, Unique_Property_ID, Partner_ID, Scheduled Date & Time, Google Maps Pin, Visit Status, Deal Value, Commission/Fee Status.
+4. WhatsApp Business API Automation Workflows
+Integration with a WhatsApp Business API provider (e.g., Wati, Interakt, or AiSensy) via webhooks:
+
+1. Instant Lead Acknowledgment (0 Seconds): Auto-send property brochure, location highlights, and Unique Property ID confirmation upon form submission.
+2. Automated Qualification Bot: Interactive WhatsApp quick-reply buttons asking: (a) Purpose: Self-Use vs. Investment, (b) Home Loan Assistance Needed?, (c) Preferred Day for Site Visit. Responses auto-populate the Buyers_Leads table.
+3. Appointment Confirmation & Reminders: Send calendar details and Google Maps location pin to Buyer, Partner, and Admin upon visit booking, followed by an automated reminder 2 hours prior to the visit.
+4. 15-Day Inventory Audit Bot: Automated message sent every 15 days to Agents/Owners asking "Is property [AGT-SHARMA-01] still available?" with [Yes - Active] / [No - Mark Sold] buttons that auto-update the live website.
+5. Revenue Streams Supported by the System
+
+- Transaction Brokerage / Success Fee: Split commission tracked per closed deal in the Appointments_Deals module.
+- Developer SaaS & Ad Management Fee: Monthly subscription + ad campaign management fee for Developers using the marketing backend.
+- Featured Listings: Paid top-slot placement on the homepage and search results for Agents and Owners.
+6. Phased Delivery Milestones (For Vendor Execution)
+
+- Phase 1 (MVP — Weeks 1 to 4): Public Buyer Portal, Agent/Owner Listing Module with Auto-Unique ID generator, Super Admin Approval & CRM Dashboard, and WhatsApp Lead/Appointment Automation.
+- Phase 2 (Weeks 5 to 8): Developer B2B Dashboard, Meta & Google Ads Lead Sync/API integration, Smart Matchmaking engine, and Automated 15-day Inventory Verification Bot.
